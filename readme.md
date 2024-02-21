@@ -9,7 +9,7 @@ Conheça o canal da Comunidade ZDG:
 
 ### Como usar?
 
-- git clone https://github.com/pedroherpeto/comunidadezdg.git
+- git clone https://github.com/daniseveriano/comunidadezdg.git
 - cd comunidadezdg
 - Rodar `npm install`
 - Obs de <strong>Daniele Severiano</strong>: Rodar `openssl req -nodes -new -x509 -keyout server.key -out server.cert` para criar os arquivos server.key e server.cert 
