@@ -12,12 +12,14 @@ Conheça o canal da Comunidade ZDG:
 - git clone https://github.com/pedroherpeto/comunidadezdg.git
 - cd comunidadezdg
 - Rodar `npm install`
+- Obs de <strong>Daniele Severiano</strong>: Rodar `openssl req -nodes -new -x509 -keyout server.key -out server.cert` para criar os arquivos server.key e server.cert 
 - Rodar `npm start`
 - Abrir o browser no endereço `http://localhost:8000`
 - Ler o QRCode na tela
 
 
-## Conheça a Comunidade ZDG
+## Este repositório é um fork do repositório original da Comunidade ZDG
 
-🤑 Garanta sua renda extra explorando todo o poder da API de graça, mesmo que você nao seja programador, clicando no link <a href="https://comunidadezdg.com.br">Comunidade ZDG</a>. Obrigado =)
-
+Aqui foi implementado um certificado SSL autoassinado para as requisições;
+As mensagens de resposta às mensagens dos clientes foram comentadas no código;
+Foram acrescidas configurações no Header das requisições para resolver erros de CORS (Cross-Origin Resource Sharing).
