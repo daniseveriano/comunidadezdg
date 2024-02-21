@@ -269,5 +269,5 @@ app.post('/zdg-media', [
 }); */
     
 server.listen(port, function() {
-        console.log('Aplicação rodando na porta *: ' + port + ' . Acesse no link: https://192.168.70.92:' + port);
+        console.log('Aplicação rodando na porta *: ' + port + ' . Acesse no link: https://SEU-IP:' + port);
 });
