@@ -434,5 +434,5 @@ client.on('message', async msg => {
 });
     
 server.listen(port, function() {
-        console.log('Aplicação rodando na porta *: ' + port + ' . Acesse no link: https://192.168.70.47:' + port);
+        console.log('Aplicação rodando na porta *: ' + port + ' . Acesse no link: https://SEU-IP:' + port);
 });

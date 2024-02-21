@@ -13,8 +13,9 @@ Conheça o canal da Comunidade ZDG:
 - cd comunidadezdg
 - Rodar `npm install`
 - Obs de <strong>Daniele Severiano</strong>: Rodar `openssl req -nodes -new -x509 -keyout server.key -out server.cert` para criar os arquivos server.key e server.cert 
+- Obs de <strong>Daniele Severiano</strong>: Configurar o SSH do seu servidor para rodar esta aplicação externamente
 - Rodar `npm start`
-- Abrir o browser no endereço `http://localhost:8000`
+- Abrir o browser no endereço `https://SEU-IP:3000`
 - Ler o QRCode na tela
 
 
