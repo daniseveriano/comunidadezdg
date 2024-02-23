@@ -1,20 +1,15 @@
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
-const fs = require('fs');
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const socketIO = require('socket.io');
 const qrcode = require('qrcode');
-const https = require('https');
-const options = {
-	key: fs.readFileSync('server.key'),
-	cert: fs.readFileSync('server.cert')
-};
+const http = require('http');
 const fileUpload = require('express-fileupload');
 const axios = require('axios');
 const mime = require('mime-types');
 const port = process.env.PORT || 3000;
 const app = express();
-const server = https.createServer(options, app);
+const server = http.createServer(app);
 const io = socketIO(server);
 
 function delay(t, v) {
@@ -63,42 +58,42 @@ const client = new Client({
 client.initialize();
 
 io.on('connection', function(socket) {
-  socket.emit('message', '© BOT-ZDG - Iniciado');
-  socket.emit('qr', './icon.svg');
+  socket.emit('message', 'BOT Iniciado');
+  socket.emit('qr', './icon.png');
 
 client.on('qr', (qr) => {
     console.log('QR RECEIVED', qr);
     qrcode.toDataURL(qr, (err, url) => {
       socket.emit('qr', url);
-      socket.emit('message', '© BOT-ZDG QRCode recebido, aponte a câmera  seu celular!');
+      socket.emit('message', 'BOT QRCode recebido, aponte a câmera  seu celular!');
     });
 });
 
 client.on('ready', () => {
-    socket.emit('ready', '© BOT-ZDG Dispositivo pronto!');
-    socket.emit('message', '© BOT-ZDG Dispositivo pronto!');
+    socket.emit('ready', 'BOT Dispositivo pronto!');
+    socket.emit('message', 'BOT Dispositivo pronto!');
     socket.emit('qr', './check.svg')	
-    console.log('© BOT-ZDG Dispositivo pronto');
+    console.log('BOT Dispositivo pronto');
 });
 
 client.on('authenticated', () => {
-    socket.emit('authenticated', '© BOT-ZDG Autenticado!');
-    socket.emit('message', '© BOT-ZDG Autenticado!');
-    console.log('© BOT-ZDG Autenticado');
+    socket.emit('authenticated', 'BOT Autenticado!');
+    socket.emit('message', 'BOT Autenticado!');
+    console.log('BOT Autenticado');
 });
 
 client.on('auth_failure', function() {
-    socket.emit('message', '© BOT-ZDG Falha na autenticação, reiniciando...');
-    console.error('© BOT-ZDG Falha na autenticação');
+    socket.emit('message', 'BOT Falha na autenticação, reiniciando...');
+    console.error('BOT Falha na autenticação');
 });
 
 client.on('change_state', state => {
-  console.log('© BOT-ZDG Status de conexão: ', state );
+  console.log('BOT Status de conexão: ', state );
 });
 
 client.on('disconnected', (reason) => {
-  socket.emit('message', '© BOT-ZDG Cliente desconectado!');
-  console.log('© BOT-ZDG Cliente desconectado', reason);
+  socket.emit('message', 'BOT Cliente desconectado!');
+  console.log('BOT Cliente desconectado', reason);
   client.initialize();
 });
 });
@@ -132,13 +127,13 @@ app.post('/zdg-message', [
     client.sendMessage(numberZDG, message).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Mensagem enviada',
+      message: 'BOT Mensagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
+      message: 'BOT Mensagem não enviada',
       response: err.text
     });
     });
@@ -148,13 +143,13 @@ app.post('/zdg-message', [
     client.sendMessage(numberZDG, message).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Mensagem enviada',
+      message: 'BOT Mensagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
+      message: 'BOT Mensagem não enviada',
       response: err.text
     });
     });
@@ -164,13 +159,13 @@ app.post('/zdg-message', [
     client.sendMessage(numberZDG, message).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Mensagem enviada',
+      message: 'BOT Mensagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Mensagem não enviada',
+      message: 'BOT Mensagem não enviada',
       response: err.text
     });
     });
@@ -219,13 +214,13 @@ app.post('/zdg-media', [
     client.sendMessage(numberZDG, media, {caption: caption}).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Imagem enviada',
+      message: 'BOT Imagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Imagem não enviada',
+      message: 'BOT Imagem não enviada',
       response: err.text
     });
     });
@@ -235,13 +230,13 @@ app.post('/zdg-media', [
     client.sendMessage(numberZDG, media, {caption: caption}).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Imagem enviada',
+      message: 'BOT Imagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Imagem não enviada',
+      message: 'BOT Imagem não enviada',
       response: err.text
     });
     });
@@ -251,13 +246,13 @@ app.post('/zdg-media', [
     client.sendMessage(numberZDG, media, {caption: caption}).then(response => {
     res.status(200).json({
       status: true,
-      message: 'BOT-ZDG Imagem enviada',
+      message: 'BOT Imagem enviada',
       response: response
     });
     }).catch(err => {
     res.status(500).json({
       status: false,
-      message: 'BOT-ZDG Imagem não enviada',
+      message: 'BOT Imagem não enviada',
       response: err.text
     });
     });
@@ -269,5 +264,5 @@ app.post('/zdg-media', [
 }); */
     
 server.listen(port, function() {
-        console.log('Aplicação rodando na porta *: ' + port + ' . Acesse no link: https://SEU-IP:' + port);
+        console.log('Aplicação rodando na porta *: ' + port + ' . Acesse no link: http://SEU-IP:' + port);
 });
